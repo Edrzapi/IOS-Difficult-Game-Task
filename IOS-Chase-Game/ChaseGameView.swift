@@ -33,7 +33,7 @@ struct ChaseGameView: View {
                         .foregroundColor(.white)
                         .clipShape(Circle())
                 }
-                .position(game.buttonPosition) 
+                .position(game.buttonPosition)
                 .onAppear {
                     screenSize = geometry.size
                     startGame()

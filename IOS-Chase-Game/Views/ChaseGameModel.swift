@@ -1,20 +1,27 @@
-
 import SwiftUI
 import Combine
 
 class ChaseGameModel: ObservableObject {
-    // Published properties to notify the view when they change
     @Published var score: Int = 0
     @Published var buttonPosition: CGPoint = .zero
+    @Published var missedClicks: Int = 0  // Track missed clicks
     
     private var speed: TimeInterval = 1.0  // Speed at which the button moves
     private let minSpeed: TimeInterval = 0.5  // Minimum speed cap
     private let speedIncrement: TimeInterval = 0.1  // Speed increase after each tap
-    
+    private let maxMissedClicks: Int = 3  // Limit of missed clicks
+
     // Called when the button is tapped
     func buttonTapped() {
         score += 1
+        missedClicks = 0  // Reset missed clicks after a successful tap
         increaseSpeed()
+    }
+    
+    // Called when a click is missed
+    func missedClick() -> Bool {
+        missedClicks += 1
+        return missedClicks >= maxMissedClicks  // Return `true` if game is over
     }
     
     // Move the button to a random position within the screen bounds
@@ -31,6 +38,6 @@ class ChaseGameModel: ObservableObject {
     
     // Increase the game speed by reducing the time interval
     private func increaseSpeed() {
-        speed = max(speed - speedIncrement, minSpeed)  // set minimum speed
+        speed = max(speed - speedIncrement, minSpeed)  // Set minimum speed
     }
 }

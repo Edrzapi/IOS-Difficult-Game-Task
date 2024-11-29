@@ -4,6 +4,9 @@ struct ScoreBoardView: View {
     @State private var highScore: Int = 0          // High score fetched from the database
     @State private var isLoading: Bool = true      // Tracks loading state
 
+    var dbHelper = DatabaseHelper.shared
+    
+    
     var body: some View {
         VStack {
 

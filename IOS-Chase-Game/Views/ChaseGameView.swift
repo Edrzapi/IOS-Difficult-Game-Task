@@ -9,7 +9,7 @@ struct ChaseGameView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // White background that handles missed clicks
+                // Updated White background, now handles missed clicks
                 Color.white
                     .ignoresSafeArea()
                     .onTapGesture {
@@ -26,7 +26,7 @@ struct ChaseGameView: View {
                     Spacer()
                 }
                 
-                // Moving Button
+          
                 if !isGameOver {
                     Button(action: {
                         game.buttonTapped()
